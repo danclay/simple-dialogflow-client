@@ -44,7 +44,8 @@ To get a result object from dialogflow, use the `getIntent(msg, callback)` funct
 ### Msg parameter:
 | Name      | Type   | Optional? | Description                                                                                   |
 |-----------|--------|-----------|-----------------------------------------------------------------------------------------------|
-| author.id | Object | Yes       | If not using a custom query, this is needed for the ID                                        |
+| content   | string | Yes       | If not using a custom query, this will be used as the query text input                        |
+| author.id | Number | Yes       | If not using a custom query, this is needed for the ID                                        |
 | locale    | string | Yes       | message locale if you want it to not be English (only if no using custom query) (e.g.'en-US') |
 | query     | Object | Yes       | custom dialogflow query                                                                       |
 
