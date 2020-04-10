@@ -27,9 +27,3 @@ bot.on("messageCreate", async (msg) => {
     };
 });
 bot.connect();
-
-bot.on("guildMemberAdd", (guild, member) => { // automatically adds role on join
-    if (guild.id === "481609857993146378" && !member.bot) {
-        member.addRole(process.env.role_to_assign);
-    };
-});
