@@ -100,7 +100,7 @@
     <a href="https://david-dm.org/danclay/discord-dialogflow"><img src="https://img.shields.io/david/danclay/discord-dialogflow.svg?cacheSeconds=3600&style=flat-square" alt="Dependencies" /></a>
   </p>
   <p>
-    <a href="https://nodei.co/npm/@danclay/discord-dialogflow/"><img src="https://nodei.co/npm/@danclay/discord-dialogflow.png"></a>
+    <a href="https://nodei.co/npm/@danclay/discord-dialogflow/"><img src="https://nodeico.herokuapp.com/@danclay/discord-dialogflow.svg"></a>
   </p>
 </div>
 <h1>About</h1>
@@ -109,14 +109,15 @@
 <p>To download eris-sharder, run <code>npm install @danclay/discord-dialogflow --save</code>
 or with yarn: <code>yarn add @danclay/discord-dialogflow</code></p>
 <h1>Usage</h1>
-<p>Basics:</p>
+<h2>Basics:</h2>
 <pre class="prettyprint source lang-javascript"><code>const dialogflow = require('discord-dialogflow'); // requires the package
 dialogflow.init(&quot;project-id&quot;, &quot;path-to-service-account-key.json&quot;); // init your project
 dialogflow.getIntent(msg, r => { // get the intent
     // code using the results
 });
 </code></pre>
-<p>Example using Eris and easy mode (as seen in <a href="https://raw.githubusercontent.com/danclay/discord-dialogflow/master/test/test.js">test/test.js</a>):</p>
+<h2>Example using Eris and easy mode</h2>
+<p>(as seen in <a href="https://raw.githubusercontent.com/danclay/discord-dialogflow/master/test/test.js">test/test.js</a>):</p>
 <pre class="prettyprint source lang-javascript"><code>if (!(process.env.NODE_ENV === &quot;production&quot;)) { // Use dotenv for local testing
     require('dotenv').config();
 };
@@ -146,13 +147,40 @@ bot.on(&quot;messageCreate&quot;, async (msg) => {
     };
 });
 bot.connect();
+});
+</code></pre>
+<h2>Example using Eris and easy mode disabled:</h2>
+<pre class="prettyprint source lang-javascript"><code>if (!(process.env.NODE_ENV === &quot;production&quot;)) { // Use dotenv for local testing
+    require('dotenv').config();
+};
 
-bot.on(&quot;guildMemberAdd&quot;, (guild, member) => { // automatically adds role on join
-    if (guild.id === &quot;481609857993146378&quot; && !member.bot) {
-        member.addRole(process.env.role_to_assign);
+const Eris = require('eris');
+
+var bot = new Eris(process.env.token);
+bot.on(&quot;ready&quot;, () => {
+    console.log(&quot;Ready!&quot;);
+});
+
+// Dialogflow
+const dialogflow = require('../index.js'); // require the package (use the package name &quot;discord-dialogflow&quot; when you do it)
+dialogflow.init({
+    projectID: process.env.projectID,
+    keyPath: process.env.keyPath,
+    easyMode: false,
+    debug: true
+});
+
+
+bot.on(&quot;messageCreate&quot;, async (msg) => {
+    if (!msg.author.bot) {
+        dialogflow.getIntent(msg, (r) => { // gets the intent and fallback text
+            console.log(JSON.stringify(r));
+            console.log(JSON.stringify(r.fulfillmentMessagesJSON[0].discord));
+            bot.createMessage(msg.channel.id, {embed: r.fulfillmentMessagesJSON[0].discord});
+        });
     };
 });
-});
+bot.connect();
 </code></pre>
     </article>
   </section>
