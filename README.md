@@ -1,20 +1,21 @@
 <div align="center">
   <p>
-    <a href="https://www.npmjs.com/package/discord-dialogflow"><img src="https://img.shields.io/npm/v/discord-dialogflow.svg?cacheSeconds=3600&style=flat-square" alt="NPM version" /></a>
-    <a href="https://raw.githubusercontent.com/danclay/discord-dialogflow/master/LICENSE"><img alt="License" src="https://img.shields.io/npm/l/discord-dialogflow?style=flat-square">
-    <a href="https://david-dm.org/danclay/discord-dialogflow"><img src="https://img.shields.io/david/danclay/discord-dialogflow.svg&cacheSeconds=3600&style=flat-square" alt="Dependencies" /></a>
+    <a href="https://www.npmjs.com/package/@danclay/discord-dialogflow"><img src="https://img.shields.io/npm/v/@danclay/discord-dialogflow.svg?cacheSeconds=3600&style=flat-square" alt="NPM version" /></a>
+    <a href="https://raw.githubusercontent.com/danclay/discord-dialogflow/master/LICENSE"><img alt="License" src="https://img.shields.io/npm/l/@danclay/discord-dialogflow?style=flat-square">
+    <a href="https://david-dm.org/danclay/discord-dialogflow"><img src="https://img.shields.io/david/danclay/discord-dialogflow.svg?cacheSeconds=3600&style=flat-square" alt="Dependencies" /></a>
   </p>
   <p>
-    <a href="https://nodei.co/npm/discord-dialogflow/"><img src="https://nodei.co/npm/discord-dialogflow.png"></a>
+    <a href="https://nodei.co/npm/@danclay/discord-dialogflow/"><img src="https://nodei.co/npm/@danclay/discord-dialogflow.png"></a>
   </p>
 </div>
 
 # About
 
-Easily integrate Dialogflow into your Discord bot
+Easily integrate Dialogflow into your Discord bot to allow for natural conversations 
 
 # Installation
-To download eris-sharder, run `npm install discord-dialogflow --save`
+To download eris-sharder, run `npm install @danclay/discord-dialogflow --save`
+or with yarn: `yarn add @danclay/discord-dialogflow`
 
 # Usage
 
