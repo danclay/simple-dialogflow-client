@@ -1,0 +1,23 @@
+{
+  "name": "discord-dialogflow",
+  "version": "1.0.0",
+  "description": "Quick integration of dialogflow for Discord bots",
+  "main": "index.js",
+  "repository": "https://github.com/danclay/discord-dialogflow",
+  "author": "danclay",
+  "license": "MIT",
+  "scripts": {
+    "prepublishOnly": "./node_modules/.bin/jsdoc -c .jsdoc.json",
+    "test": "node ./test/test.js"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "eris": "^0.11.2",
+    "jsdoc": "~3.6.4",
+    "jsdoc-template": "https://github.com/braintree/jsdoc-template"
+  },
+  "dependencies": {
+    "dialogflow": "^1.2.0",
+    "uuid": "^7.0.3"
+  }
+}
