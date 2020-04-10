@@ -104,8 +104,8 @@ var sessions = []; // array of objects of sessions
  * @async
  * @param {Object} msg message object
  * @param {Object} [msg.author.id] If not using a custom query, this is needed for the ID
- * @param {Object} [msg.locale] message locale if you want it to not be English (only if no using custom query)
- * @param {Object} [msg.query] custom query
+ * @param {string} [msg.locale] message locale if you want it to not be English (only if no using custom query) (e.g.'en-US')
+ * @param {Object} [msg.query] custom dialogflow query
  * @param {Number} [msg.query.user] user ID for session storage if using a custom query
  * @param {callback} callback callback function
  */
@@ -190,24 +190,21 @@ async function getIntent(msg, callback) {
             });
         };
 
+        /**
+         * @callback callback callback with result
+         * @param {Object} result result object or string if using easy mode
+         */
         if (options.easyMode) {
             callback(result.fulfillmentText);
         } else {
             callback(result);
         };
-
-        /**
-         * @callback callback callback with result
-         * @param {Object} result result
-         */
     } else {
         throw new Error("You need to init discord-dialogflow");
     }
 };
 
-module.exports = getIntent;
-
-</code></pre>
+module.exports = getIntent;</code></pre>
   </article>
 </section>
 

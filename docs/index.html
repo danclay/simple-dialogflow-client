@@ -103,20 +103,140 @@
     <a href="https://nodei.co/npm/@danclay/discord-dialogflow/"><img src="https://nodeico.herokuapp.com/@danclay/discord-dialogflow.svg"></a>
   </p>
 </div>
+<h3><a href="https://danclay.github.io/discord-dialogflow/">Documentation</a> | <a href="https://abal.moe/Eris/docs/index.html">Eris</a> | <a href="https://discord.js.org/#/docs/main/stable/general/welcome">discord.js</a></h3>
 <h1>About</h1>
-<p>Easily integrate Dialogflow into your Discord bot to allow for natural conversations</p>
+<p>Easily integrate Dialogflow into your Discord bot to allow for natural conversations. This should work with the message object for both Eris and discord.js</p>
 <h1>Installation</h1>
 <p>To download eris-sharder, run <code>npm install @danclay/discord-dialogflow --save</code>
 or with yarn: <code>yarn add @danclay/discord-dialogflow</code></p>
 <h1>Usage</h1>
-<h2>Basics:</h2>
+<h2>Config</h2>
+<p>To configure the bot, use the <code>init(options)</code> function of this package. The options parameter is a object as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Optional?</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>projectID</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>GCP project ID</td>
+</tr>
+<tr>
+<td>keyPath</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Absolute path to the GCP service account JSON key</td>
+</tr>
+<tr>
+<td>convertResult</td>
+<td>Boolean</td>
+<td>Yes</td>
+<td>true</td>
+<td>If using a custom response payload and you want it to be given to you in JSON (if used this will be given in result.fulfillmentMessagesJSON)</td>
+</tr>
+<tr>
+<td>storeSessions</td>
+<td>Boolean</td>
+<td>Yes</td>
+<td>true</td>
+<td>If you want sessions IDs to remain to same for specific users</td>
+</tr>
+<tr>
+<td>sessionExpires</td>
+<td>Number</td>
+<td>Yes</td>
+<td>5</td>
+<td>How long until each session ID is deleted (only if options.storeSessions=true)</td>
+</tr>
+<tr>
+<td>easyMode</td>
+<td>Boolean</td>
+<td>Yes</td>
+<td>false</td>
+<td>Enable basic mode where the callback will only have the fulfillment text</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>Boolean</td>
+<td>Yes</td>
+<td>false</td>
+<td>Enable or disable debug logging</td>
+</tr>
+</tbody>
+</table>
+<h2>Getting a result</h2>
+<p>To get a result object from dialogflow, use the <code>getIntent(msg, callback)</code> function of this package. The parameters are as follows:</p>
+<h3>Parameters:</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>Object</td>
+<td>message object (see below)</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>callback</td>
+<td>callback function (result object or string if using easy mode)</td>
+</tr>
+</tbody>
+</table>
+<h3>Msg parameter:</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Optional?</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>author.id</td>
+<td>Object</td>
+<td>Yes</td>
+<td>If not using a custom query, this is needed for the ID</td>
+</tr>
+<tr>
+<td>locale</td>
+<td>string</td>
+<td>Yes</td>
+<td>message locale if you want it to not be English (only if no using custom query) (e.g.'en-US')</td>
+</tr>
+<tr>
+<td>query</td>
+<td>Object</td>
+<td>Yes</td>
+<td>custom dialogflow query</td>
+</tr>
+</tbody>
+</table>
+<h2>Basics</h2>
 <pre class="prettyprint source lang-javascript"><code>const dialogflow = require('discord-dialogflow'); // requires the package
 dialogflow.init(&quot;project-id&quot;, &quot;path-to-service-account-key.json&quot;); // init your project
 dialogflow.getIntent(msg, r => { // get the intent
     // code using the results
 });
 </code></pre>
-<h2>Example using Eris and easy mode</h2>
+<h3>Example using Eris and easy mode</h3>
 <p>(as seen in <a href="https://raw.githubusercontent.com/danclay/discord-dialogflow/master/test/test.js">test/test.js</a>):</p>
 <pre class="prettyprint source lang-javascript"><code>if (!(process.env.NODE_ENV === &quot;production&quot;)) { // Use dotenv for local testing
     require('dotenv').config();
@@ -149,7 +269,7 @@ bot.on(&quot;messageCreate&quot;, async (msg) => {
 bot.connect();
 });
 </code></pre>
-<h2>Example using Eris and easy mode disabled:</h2>
+<h3>Example using Eris and easy mode disabled:</h3>
 <pre class="prettyprint source lang-javascript"><code>if (!(process.env.NODE_ENV === &quot;production&quot;)) { // Use dotenv for local testing
     require('dotenv').config();
 };
