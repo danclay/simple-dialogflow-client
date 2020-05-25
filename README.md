@@ -16,7 +16,7 @@
 Easily integrate Dialogflow into your Discord bot to allow for natural conversations. This should work with the message object for both Eris and discord.js
 
 # Installation
-To download eris-sharder, run `npm install @danclay/discord-dialogflow --save`
+Run `npm install @danclay/discord-dialogflow --save`
 or with yarn: `yarn add @danclay/discord-dialogflow`
 
 # Usage
