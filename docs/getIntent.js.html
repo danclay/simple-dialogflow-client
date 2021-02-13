@@ -96,7 +96,7 @@
 const path = require('path');
 const convert = require('./structJson').structProtoToJson;
 
-const dialogflow = require('dialogflow');
+const dialogflow = require('@google-cloud/dialogflow');
 var sessions = []; // array of objects of sessions
 
 /**
@@ -154,7 +154,7 @@ async function getIntent(msg, callback) {
         const sessionClient = new dialogflow.SessionsClient({
             keyFilename: options.creds.keyPath
         });
-        const sessionPath = sessionClient.sessionPath(options.creds.projectID, sessionId());
+        const sessionPath = sessionClient.projectAgentSessionPath(options.creds.projectID, sessionId());
 
         // The text query request.
         const request = {
