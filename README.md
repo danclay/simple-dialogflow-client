@@ -9,13 +9,13 @@
   </p>
 </div>
 
-### [Documentation](https://danclay.github.io/discord-dialogflow/) | [Eris](https://abal.moe/Eris/docs/index.html) | [discord.js](https://discord.js.org/#/docs/main/stable/general/welcome)
+### [Documentation](https://danclay.github.io/simple-dialogflow-client/)
 
 # About
 
-Easily integrate Dialogflow into your Discord bot to allow for natural conversations. This should work with the message object for both Eris and discord.js
+Easily integrate Dialogflow into your Discord bot (or other stuff) to allow for natural conversations. This should work with the message object for both Eris and discord.js
 
-# Installation
+# Installation (uses discord-dialogflow name still)
 Run `npm install @danclay/discord-dialogflow --save`
 or with yarn: `yarn add @danclay/discord-dialogflow`
 
